@@ -1,1 +1,5 @@
-// This is where you can add scripts for your popup window.
+document.addEventListener('DOMContentLoaded', () => {
+    chrome.runtime.sendMessage({type: 'getCurrentUrl'}, response => {
+        document.getElementById('current-url').textContent = response.url;
+    });
+});
