@@ -1,13 +1,24 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Bingg",
   "version": "1.0",
-  "background": {
-    "service_worker": "background.js"
-  },
-  "action": {
+  "permissions": [
+    "activeTab",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "browser_action": {
     "default_popup": "popup/popup.html"
   },
-  "permissions": ["activeTab"],
-  "host_permissions": ["<all_urls>"]
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["popup/popup.js"]
+    }
+  ]
 }
