@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById('toggle').addEventListener('click', () => {
         chrome.runtime.sendMessage({ type: 'toggle' }, response => {
+            document.getElementById('status').textContent = getStatusMessage(response.enabled);
             document.getElementById('toggle').textContent = getCTAText(response.enabled);
         });
     });
